@@ -17,26 +17,22 @@ public class Variables
 		//char      boolean		String
 
 		//integer variables
-		byte byteOne = 127;
-		short shortOne = -32123;
-		int intOne = 90877;
-		long longOne = 999999999; 
-		float floatOne = 51.78f;
-		double doubleOne = 923.23455;
-		char charOne = 'A';
-		boolean booleanOne = false;
-		String stringOne = "Hello World";
-
-
+		byte byteOne = 75;
+		short shortOne = -21675;
+		int intOne = 90891345;
+		long longOne = 596997888; 
+		
 		//decimal variables
-
+		float floatOne = 51.78f;
+		double doubleOne = 265.23455;
 
 		//other integer types
-
-
+		char charOne = 'A';
+		
 		//other types
-
-
+		boolean booleanOne = true;
+		String stringOne = "Hello World";
+		
 		//output your information here
 		System.out.println("/////////////////////////////////");
 		System.out.println("*Yajn Bollapragada     1/30/2020*");
