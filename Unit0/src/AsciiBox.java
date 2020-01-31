@@ -1,8 +1,8 @@
 //© A+ Computer Science  -  www.apluscompsci.com
-//Name -
-//Date -
-//Class -
-//Lab  -
+//Name - Yajn Bollapragada
+//Date - 1.29.2020
+//Class - Period 4 APCSA
+//Lab  - ASCII BOX
 
 public class AsciiBox
 {
