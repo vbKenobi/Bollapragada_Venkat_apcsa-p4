@@ -27,7 +27,7 @@ public class MPHRunner
 
 		MilesPerHour test = new MilesPerHour(dist, hrs, mins);
 		test.calcMPH();
-		test.print();
+		out.println(test);
 		
 		//Test Case 1
 		out.print("Enter the distance :: ");
@@ -41,7 +41,7 @@ public class MPHRunner
 
 		test.setNums(dist, hrs, mins);
 		test.calcMPH();
-		test.print();
+		out.println(test);
 		
 		//Test Case 2
 		out.print("Enter the distance :: ");
@@ -55,7 +55,7 @@ public class MPHRunner
 
 		test.setNums(dist, hrs, mins);
 		test.calcMPH();
-		test.print();
+		out.println(test);
 		
 		//Test Case 3
 		out.print("Enter the distance :: ");
@@ -69,7 +69,7 @@ public class MPHRunner
 
 		test.setNums(dist, hrs, mins);
 		test.calcMPH();
-		test.print();
+		out.println(test);
 		
 		
 	}

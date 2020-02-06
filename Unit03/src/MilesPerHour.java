@@ -35,7 +35,7 @@ public class MilesPerHour
 
 	public void calcMPH()
 	{
-		double TotalTime = hours + minutes/60; 
+		double TotalTime = hours + minutes/60.0; 
 		mph =  distance / TotalTime;
 	}
 
@@ -49,6 +49,6 @@ public class MilesPerHour
 	
 	public String toString()
 	{
-		return "";
+		return "MHP = " + mph;
 	}
 }
