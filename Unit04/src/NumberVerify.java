@@ -14,7 +14,7 @@ public class NumberVerify
 	{
 		if ((num % 2) == 1)
 		{
-		return true;
+			return true;
 		}
 		else
 		{
@@ -25,7 +25,7 @@ public class NumberVerify
 	{
 		if ((num % 2) == 0)
 		{
-		return true;
+			return true;
 		}
 		else
 		{

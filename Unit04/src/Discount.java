@@ -19,7 +19,7 @@ public class Discount
 	{
 		if (bill > 2000)
 		{
-			bill = 0.75 * bill;
+			bill = 0.85 * bill;
 		}
 		return bill;
 	}
