@@ -11,28 +11,39 @@ import java.util.Scanner;
 
 public class StringOddOrEven
 {
-	private String word;
+	private String word, result;
 
 	public StringOddOrEven()
 	{
+		setString("");
 	}
 
 	public StringOddOrEven(String s)
 	{
+		setString(s);
 	}
 
 	public void setString(String s)
 	{
+		word = s;
 	}
 
- 	public boolean isEven()
+ 	public String isEven()
  	{
-		return false;
+		if(word.length() % 2 == 0)
+		{
+			result = "even";
+		}
+		else
+		{
+			result = "odd";
+		}
+ 		return result;
 	}
 
  	public String toString()
  	{
- 		String output="";
+ 		String output= word + " is :: " + result;
  		return output;
 	}
 }
