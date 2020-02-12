@@ -9,7 +9,7 @@ public class AvgLenRunner
 	{
 		AvgLen s = new AvgLen();
 		
-		System.out.println( AvgLen.go( "dog", "cats" ) ) ;
+		System.out.println( s.go( "dog", "cats" ) ) ;
 		System.out.println( s.go( "aplus", "pigs" ) ) ;
 		System.out.println( s.go( "catgiraffe", "apluscompsci" ) ) ;
 		System.out.println( s.go( "ap", "aplus" ) ) ;
