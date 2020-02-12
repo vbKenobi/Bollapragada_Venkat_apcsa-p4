@@ -7,11 +7,8 @@ public class AvgLen
 {
    public static double go( String a, String b )
 	{
-	   int strlena = a.length();
-	   int strlenb = b.length();
-	   double avglen = strlena + strlenb;
-	   avglen = avglen/2;
+	   double avglen = 0.5 *(a.length() + b.length());
 	   
-		return avglen;
+	   return avglen;
 	}
 }
