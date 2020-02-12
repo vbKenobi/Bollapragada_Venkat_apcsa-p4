@@ -36,6 +36,10 @@ public class WordsCompareRunner
 	   test.compare();
 	   out.println(test);
 	   
+	   test.setWords("CSA", "CSA");
+	   test.compare();
+	   out.println(test);
+	   
 	   test.setWords("CSA", "PHYSICS");
 	   test.compare();
 	   out.println(test);

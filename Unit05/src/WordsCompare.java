@@ -40,6 +40,10 @@ public class WordsCompare
 		{
 			return wordOne + " should be placed before " + wordTwo + "\n";
 		}
+		else if (compare == 0)
+		{
+			return wordOne + " is the same as " + wordTwo + "\n";
+		}
 		else
 		{
 			return wordOne + " should be placed after " + wordTwo + "\n";
