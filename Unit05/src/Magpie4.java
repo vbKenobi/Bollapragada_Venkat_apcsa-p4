@@ -31,43 +31,81 @@ public class Magpie4
 	public String getResponse(String statement)
 	{
 		String response = "";
-		if (statement.length() == 0)
+		if (statement.trim().length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Say something, please";
 		}
-
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
-		}
-		else if (findKeyword(statement, "mother") >= 0
-				|| findKeyword(statement, "father") >= 0
-				|| findKeyword(statement, "sister") >= 0
-				|| findKeyword(statement, "brother") >= 0)
+		else if ( (findKeyword(statement, "mother") >= 0 ) || (findKeyword(statement, "father") >= 0 ) ||
+				  (findKeyword(statement, "sister") >= 0 ) || (findKeyword(statement, "brother") >= 0) )
 		{
 			response = "Tell me more about your family.";
 		}
-
+			
+		else if ( (findKeyword(statement, "cat") >= 0 ) || (findKeyword(statement, "dog") >= 0) || 
+				  (findKeyword(statement,"turtle") >= 0 ) || (findKeyword(statement, "fish") >= 0) )
+		{
+			response = "Tell me more about your pets";
+		}
+		
+		else if (findKeyword(statement,"Mauro") >= 0)
+		{
+			response = "I know that teahcer (ONE OF THE BEST THAT EXISTS)!";
+		}
+		
+		else if (findKeyword(statement,"Star Wars") >= 0 || findKeyword(statement,"Skywalker") >= 0 || 
+				 findKeyword(statement,"Kylo") >= 0 || findKeyword(statement,"Rey") >= 0)
+		{
+			response = "I know, some of the characters in the franchise are very intersting.";
+		}
+		
+		else if (findKeyword(statement,"sports") >= 0 || findKeyword(statement,"soccer") >= 0 || 
+				findKeyword(statement,"tennis") >= 0 || findKeyword(statement,"football") >= 0)
+		{
+			response = "Tell me more about your favorite sports.";
+		}
+		
+		else if (findKeyword(statement,"videogames") >= 0 || findKeyword(statement,"racing") >= 0 || 
+				findKeyword(statement,"madden") >= 0 || findKeyword(statement,"fifa") >= 0 || findKeyword(statement,"fortnite") >= 0)
+		{
+			response = "Tell me more about your favorite videogames";
+		}
+		
+		else if (findKeyword(statement,"no") >= 0)
+		{
+			response = "Why so negative?";
+		}		
 		// Responses which require transformations
 		else if (findKeyword(statement, "I want to", 0) >= 0)
 		{
 			response = transformIWantToStatement(statement);
 		}
-
+		else if (findKeyword(statement, "I want", 0) >= 0)
+		{
+			response = transformIWantStatement(statement);
+		}
 		else
 		{
-			// Look for a two word (you <something> me)
-			// pattern
-			int psn = findKeyword(statement, "you", 0);
-
-			if (psn >= 0
-					&& findKeyword(statement, "me", psn) >= 0)
+			int psnI = findKeyword(statement, "I", 0);
+			
+			if ( (psnI == 0) && (findKeyword(statement, "you", psnI) >= 0) )
 			{
-				response = transformYouMeStatement(statement);
+				response = transformIYouStatement(statement);					
 			}
 			else
 			{
-				response = getRandomResponse();
+				// Look for a two word (you <something> me)
+				// pattern
+				int psn = findKeyword(statement, "you", 0);
+
+				if (psn >= 0
+						&& findKeyword(statement, "me", psn) >= 0)
+				{
+					response = transformYouMeStatement(statement);
+				}
+				else
+				{
+					response = getRandomResponse();
+				}	
 			}
 		}
 		return response;
@@ -95,7 +133,27 @@ public class Magpie4
 		return "What would it mean to " + restOfStatement + "?";
 	}
 
-	
+	/**
+	 * Take a statement with "I want <something>." and transform it into 
+	 * "Would you really be happy if you had <something>?"
+	 * @param statement the user statement, assumed to contain "I want"
+	 * @return the transformed statement
+	 */
+	private String transformIWantStatement(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		int psn = findKeyword (statement, "I want", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "Would you really be happy if you had " + restOfStatement + "?";
+	}	
 	
 	/**
 	 * Take a statement with "you <something> me" and transform it into 
@@ -123,7 +181,30 @@ public class Magpie4
 	}
 	
 	
-
+	/**
+	 * Take a statement with "I <something> you" and transform it into 
+	 * "Why do you <something> me?"
+	 * @param statement the user statement, assumed to contain "you" followed by "me"
+	 * @return the transformed statement
+	 */
+	private String transformIYouStatement (String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psnOfI = findKeyword (statement, "I", 0);
+		int psnOfYou = findKeyword (statement, "you", psnOfI + 1);
+		
+		String restOfStatement = statement.substring(psnOfI + 1, psnOfYou).trim();
+		return "Why do you " + restOfStatement + " me?";
+	}
 	
 	
 	/**

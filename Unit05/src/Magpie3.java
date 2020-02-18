@@ -30,21 +30,50 @@ public class Magpie3
 	public String getResponse(String statement)
 	{
 		String response = "";
-		if (statement.length() == 0)
+		if (statement.trim().length() == 0)
 		{
-			response = "Say something, please.";
+			response = "Say something, please";
 		}
-		else if (findKeyword(statement, "no") >= 0)
-		{
-			response = "Why so negative?";
-		}
-		else if (findKeyword(statement, "mother") >= 0
-				|| findKeyword(statement, "father") >= 0
-				|| findKeyword(statement, "sister") >= 0
-				|| findKeyword(statement, "brother") >= 0)
+		else if ( (findKeyword(statement, "mother") >= 0 ) || (findKeyword(statement, "father") >= 0 ) ||
+				  (findKeyword(statement, "sister") >= 0 ) || (findKeyword(statement, "brother") >= 0) )
 		{
 			response = "Tell me more about your family.";
 		}
+			
+		else if ( (findKeyword(statement, "cat") >= 0 ) || (findKeyword(statement, "dog") >= 0) || 
+				  (findKeyword(statement,"turtle") >= 0 ) || (findKeyword(statement, "fish") >= 0) )
+		{
+			response = "Tell me more about your pets";
+		}
+		
+		else if (findKeyword(statement,"Mauro") >= 0)
+		{
+			response = "I know that teahcer (ONE OF THE BEST THAT EXISTS)!";
+		}
+		
+		else if (findKeyword(statement,"Star Wars") >= 0 || findKeyword(statement,"Skywalker") >= 0 || 
+				 findKeyword(statement,"Kylo") >= 0 || findKeyword(statement,"Rey") >= 0)
+		{
+			response = "I know, some of the characters in the franchise are very intersting.";
+		}
+		
+		else if (findKeyword(statement,"sports") >= 0 || findKeyword(statement,"soccer") >= 0 || 
+				findKeyword(statement,"tennis") >= 0 || findKeyword(statement,"football") >= 0)
+		{
+			response = "Tell me more about your favorite sports.";
+		}
+		
+		else if (findKeyword(statement,"videogames") >= 0 || findKeyword(statement,"racing") >= 0 || 
+				findKeyword(statement,"madden") >= 0 || findKeyword(statement,"fifa") >= 0 || findKeyword(statement,"fortnite") >= 0)
+		{
+			response = "Tell me more about your favorite videogames";
+		}
+		
+		else if (findKeyword(statement,"no") >= 0)
+		{
+			response = "Why so negative?";
+		}
+		
 		else
 		{
 			response = getRandomResponse();
