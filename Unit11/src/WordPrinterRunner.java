@@ -10,6 +10,7 @@ public class WordPrinterRunner
 	public static void main( String args[] )
 	{
    	Scanner keyboard = new Scanner(System.in);
+   	WordPrinter test = new WordPrinter();
    	String choice="";
 		do{
 			out.print("\nEnter the word to display :: ");
@@ -19,6 +20,8 @@ public class WordPrinterRunner
  			int times = keyboard.nextInt();			
 			
 			//call the printWord method
+ 			
+ 			test.printWord(word, times);
 
 			System.out.print("\nDo you want to enter more sample input? ");
 			choice=keyboard.next();			
