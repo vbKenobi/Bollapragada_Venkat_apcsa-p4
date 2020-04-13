@@ -11,16 +11,14 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import Activity1.Card;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
-
+import Activity1.Card;
+import Activity2.Deck;
 /**
  * This class provides a GUI for solitaire games related to Elevens.
  */
@@ -134,7 +132,7 @@ public class CardGameGUI extends JFrame implements ActionListener {
 	public void repaint() {
 		for (int k = 0; k < board.size(); k++) {
 			String cardImageFileName =
-				imageFileName(board.cardAt(k), selections[k]);	
+				imageFileName(board.cardAt(k), selections[k]);
 			URL imageURL = getClass().getResource(cardImageFileName);
 			if (imageURL != null) {
 				ImageIcon icon = new ImageIcon(imageURL);

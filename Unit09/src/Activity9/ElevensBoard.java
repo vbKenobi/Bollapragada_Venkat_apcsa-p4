@@ -1,8 +1,8 @@
 package Activity9;
 import java.util.List;
-
 import java.util.ArrayList;
-
+import Activity1.Card;
+import Activity2.Deck;
 /**
  * The ElevensBoard class represents the board in a game of Elevens.
  */
@@ -29,7 +29,7 @@ public class ElevensBoard extends Board {
 	 * The values of the cards for this game to be sent to the deck.
 	 */
 	private static final int[] POINT_VALUES =
-		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 0, 0};
+		{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14};
 
 	/**
 	 * Flag used to control debugging print statements.
@@ -55,7 +55,9 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
+		
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		
 		if (selectedCards.size() == 2)
 		{
 			return containsPairSum11(selectedCards);
@@ -108,7 +110,7 @@ public class ElevensBoard extends Board {
 				return true;
 			}
 		}
-		return false;		
+		return false;	
 	}
 
 	/**
@@ -121,14 +123,42 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		System.out.println("containsJQK");
-		if (selectedCards.get(0) + selectedCards.get(1) + selectedCards.get(2) == 0)
+		List<Integer> indexValues = new ArrayList<Integer>(); 
+		boolean king = false;
+		boolean queen= false;
+		boolean jack = false;
+		System.out.println("JQK");
+		for (int i = 0 ; i < selectedCards.size(); i++)
 		{
+			
+			if(selectedCards.get(i) == 11 || selectedCards.get(i) == 12 || selectedCards.get(i) == 14 )
+			{
+				indexValues.add(i);
+			}
+		}
+		
+		for (int i = 0; i < indexValues.size(); i++)
+		{
+			if(indexValues.get(i) == 11)
+			{
+				jack = true;
+			}
+			else if(indexValues.get(i) == 12)
+			{
+				queen = true;
+			}
+			else
+			{
+				king = true;
+			}
+		}
+		
+		if (jack && queen && king)
+		{
+			System.out.println("True");
 			return true;
 		}
-		else
-		{
 		return false;
-		}
+		
 	}
 }
