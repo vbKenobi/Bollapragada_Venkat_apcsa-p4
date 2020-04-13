@@ -53,6 +53,8 @@ public class Deck {
 			}
 		}
 
+		shuffle();
+		
 		size = cards.size();
 		
 		/* *********************** */
@@ -115,7 +117,7 @@ public class Deck {
 		int r = 0;
 		Card tempvalue;
 		
-		for (int k = cards.size()-1; k >= 1; k--)
+		for (int k = cards.size()-1; k >= 0; k--)
 		{
 			r = (int)(Math.random()*(k+1));
 			tempvalue = cards.get(k);
@@ -160,7 +162,8 @@ public class Deck {
 			return null;
 		}
 		size = size -1;
-		return cards.get(cards.size()-1);
+		System.out.println("DEAL " + size);
+		return cards.get(size-1);
 		/* ********************* */
 		
 		
