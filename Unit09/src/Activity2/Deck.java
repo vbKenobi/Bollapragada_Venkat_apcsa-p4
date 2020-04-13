@@ -162,7 +162,7 @@ public class Deck {
 		}
 		size = size -1;
 		System.out.println("DEAL " + size);
-		return cards.get(size-1);
+		return cards.get(size);
 		/* ********************* */
 		
 		
