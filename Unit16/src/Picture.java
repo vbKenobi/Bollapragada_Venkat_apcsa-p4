@@ -211,7 +211,6 @@ public class Picture extends SimplePicture {
         int maxRed = 0, minRed = 255, maxGreen = 0, minGreen = 255,
                 maxBlue = 0, minBlue = 255;
 
-        // take a sample from a fish and find it's color range (average)
         for (int row = 26; row < 36; row++) {
             for (int col = 178; col < 198; col++) {
                 totalPixels++;
@@ -230,14 +229,12 @@ public class Picture extends SimplePicture {
             }
         }
 
-        // finish calculating averages
         redAvg = redAvg / totalPixels;
         greenAvg = greenAvg / totalPixels;
         blueAvg = blueAvg / totalPixels;
 
         Color averageColor = new Color(redAvg, greenAvg, blueAvg);
 
-        // distance = range
         int redDistance = maxRed - minRed;
         int greenDistance = maxGreen - minGreen;
         int blueDistance = maxBlue - minBlue;
@@ -249,7 +246,7 @@ public class Picture extends SimplePicture {
         for (Pixel[] row : pixels) {
             for (Pixel elem : row) {
                 if (elem.colorDistance(averageColor) < maxDistance * 1.7) {
-                    // played around with the multiplier, 1.7 seems to work well
+                   
                     elem.setBlue(elem.getBlue() + 50);
                 } else {
                     elem.setBlue(elem.getBlue() - 50);
@@ -360,21 +357,21 @@ public class Picture extends SimplePicture {
         Pixel copyPixel = null;
 
         int height, width;
-        height = width = (pixels.length > pixels[0].length) // height > width
+        height = width = (pixels.length > pixels[0].length) 
                 ? pixels[0].length
-                : // height > width, set both to width
-                pixels.length; // width >= height, set both to height
+                : 
+                pixels.length; 
 
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                diagPixel = pixels[col][row]; // switch row and col to switch copy direction
-                copyPixel = pixels[row][col]; // switch row and col to switch copy direction
+                diagPixel = pixels[col][row]; 
+                copyPixel = pixels[row][col]; 
                 copyPixel.setColor(diagPixel.getColor());
             }
         }
 
         Picture pix = new Picture(height, width);
-        // displays just the blank white square
+
 //        pix.explore();
         pix.copy(this, 0, 0);
         pix.explore();
@@ -390,9 +387,9 @@ public class Picture extends SimplePicture {
         int count = 0;
         Pixel[][] pixels = this.getPixels2D();
 
-        // loop through the rows
+ 
         for (int row = 27; row < 97; row++) {
-            // loop from 13 to just before the mirror point
+
             for (int col = 13; col < mirrorPoint; col++) {
                 leftPixel = pixels[row][col];
                 rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
@@ -412,8 +409,6 @@ public class Picture extends SimplePicture {
         Pixel botPixel = null;
         Point start, end;
 
-        // mirror left arm down
-        // left arm at 155,100 to 191,169
         start = new Point(155, 100);
         end = new Point(191, 169);
 
@@ -425,8 +420,6 @@ public class Picture extends SimplePicture {
             }
         }
 
-        // mirror right arm down
-        // right arm at 170,239 to 197,294
         start = new Point(170, 239);
         end = new Point(197, 294);
 
@@ -448,7 +441,7 @@ public class Picture extends SimplePicture {
         Pixel rightPixel = null;
         Point start, end;
 
-        // area to mirror is 234,236 to 320,344
+
         start = new Point(234, 236);
         end = new Point(320, 344);
 
@@ -471,11 +464,7 @@ public class Picture extends SimplePicture {
     public void clonePicturePart(Point start, Point end, Point insert) {
         Pixel[][] pixels = this.getPixels2D();
 
-        // create new picture of just the pixels to copy 
-        /* we do this instead of copying the picture being edited because 
-         copying the picture that is currently being edited can create an 
-         infinite loop effect of copying (e.g. multiple flowers copied 
-         diagonally going off the screen */
+ 
         Picture toCopy = new Picture(end.x - start.x, end.y - start.y);
         Pixel[][] toCopyPixels = toCopy.getPixels2D();
         for (int row = 0; row < end.x - start.x; row++) {
@@ -485,8 +474,6 @@ public class Picture extends SimplePicture {
             }
         }
 
-        /* copy the chunk of the picture that we have saved in toCopy to the 
-         actual picture */
         for (int row = 0; row < end.x - start.x; row++) {
             for (int col = 0; col < end.y - start.y; col++) {
                 if (row + insert.x >= this.getWidth()
@@ -550,8 +537,8 @@ public class Picture extends SimplePicture {
      * Method to create a collage of several pictures
      */
     public void createCollage() {
-        Picture flower1 = new Picture("flower1.jpg");
-        Picture flower2 = new Picture("flower2.jpg");
+        Picture flower1 = new Picture("\\Users\\Home\\Desktop\\AP CSA\\Unit16\\Unit16-Assignments-pixLab\\images\\flower1.jpg");
+        Picture flower2 = new Picture("\\Users\\Home\\Desktop\\AP CSA\\Unit16\\Unit16-Assignments-pixLab\\images\\flower2.jpg");
         this.copy(flower1, 0, 0);
         this.copy(flower2, 100, 0);
         this.copy(flower1, 200, 0);
@@ -561,70 +548,64 @@ public class Picture extends SimplePicture {
         this.copy(flower1, 400, 0);
         this.copy(flower2, 500, 0);
         this.mirrorVertical();
-        this.write("collage.jpg");
+        this.write("\\Users\\Home\\Desktop\\AP CSA\\Unit16\\Unit16-Assignments-pixLab\\images\\collage.jpg");
     }
 
-    /**
-     * Method to create a collage designed by the student
-     */
+
     public void myCollage() {
-        Picture paintingPepe = new Picture("myCollage painting pepe.jpg");
-        Picture pepe2 = new Picture("myCollage pepe2.jpg");
+        Picture paintingrey = new Picture("myCollage painting rey.jpg");
+        Picture ren = new Picture("myCollage ren.jpg");
         Picture flower = new Picture("myCollage flower.png");
 
-        // first painting pepe (background), normal
-        Picture temp = new Picture(paintingPepe);
+        Picture temp = new Picture(paintingrey);
         this.copy(temp.scale(4, 4), 0, 0);
 
-        // second painting pepe, keepOnlyGreen
         temp = new Picture(this);
         temp.keepOnlyGreen();
         this.copy(temp.scale(0.205, 0.205), 342, 530);
 
-        // third painting pepe, keepOnlyRed
         temp = new Picture(this);
         temp.keepOnlyRed();
         this.copy(temp.scale(0.041, 0.041), 414, 640);
 
-        // top and BOTTOM pepe2, zeroblue + negate
-        temp = new Picture(pepe2);
+        temp = new Picture(ren);
         temp.zeroBlue();
         temp.negate();
         Picture.replaceColor(temp, new Color(17, 13, 255), new Color(203, 251, 255));
         this.copy(temp.scale(0.5, 0.5), 50, 640);
 
-        // top and BOTTOM nose flower, zeroRed
+
         temp = new Picture(flower);
         temp.zeroRed();
         Picture.replaceColor(temp, new Color(0, 0, 0), new Color(79, 129, 1));
         this.copy(temp.scale(0.15, 0.15), 335, 279);
 
-        // top and BOTTOM second painting pepe's friend pepe2, grayscale
-        temp = new Picture(pepe2);
+
+        temp = new Picture(ren);
         temp.grayscale();
         Picture.replaceColor(temp, new Color(244, 244, 244), new Color(0, 251, 0));
         this.copy(temp.scale(0.15, 0.15), 345, 625);
 
-        // mirror top to bottom horizontally
+
         this.mirrorHorizontal();
 
-        // after mirroring, top pepe2, zeroBlue
-        temp = new Picture(pepe2);
+
+        temp = new Picture(ren);
         temp.zeroBlue();
         Picture.replaceColor(temp, new Color(238, 242, 0), new Color(203, 251, 255));
         this.copy(temp.scale(0.5, 0.5), 50, 640);
 
-        // after mirroring, top nose flower, zeroGreen
+
         temp = new Picture(flower);
         temp.zeroGreen();
         Picture.replaceColor(temp, new Color(0, 0, 0), new Color(79, 128, 1));
         this.copy(temp.scale(0.15, 0.15), 335, 279);
 
-        // after mirroring, overwrite painting pepe's friend pepe2
-        temp = new Picture(pepe2.getWidth(), pepe2.getHeight(), new Color(0, 251, 0));
+
+        temp = new Picture(ren.getWidth(), ren.getHeight(), new Color(0, 251, 0));
         this.copy(temp.scale(0.15, 0.15), 345, 625);
 
-        // top pepe2 chest flower, zeroBlue
+
         temp = new Picture(flower);
         Picture.replaceColor(temp, new Color(0, 0, 0), new Color(90, 141, 63));
         temp.zeroBlue();
